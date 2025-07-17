@@ -2,17 +2,20 @@
 
 @section('content')
 <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Suppliers</h2>
-    <a href="{{ route('suppliers.create') }}" class="btn btn-primary mb-3">Add Supplier</a>
+    <a href="{{ route('suppliers.create') }}" class="btn btn-primary mb-3"><i class="fas fa-plus"></i> Add Supplier</a>
+</div>
+
 
     @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
-    <table class="table table-bordered">
-        <thead>
+    <table class="table table-striped table-bordered align-middle text-center">
+        <thead class="table-dark">
             <tr>
-                <th>ID</th>              <!-- Add this -->
+                <th>ID</th>              
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Email</th>
@@ -24,7 +27,7 @@
         <tbody>
             @foreach ($suppliers as $supplier)
             <tr>
-                <td>{{ $supplier->id }}</td>       <!-- Show the ID here -->
+                <td>{{ $supplier->id }}</td>       
                 <td>{{ $supplier->name }}</td>
                 <td>{{ $supplier->phone }}</td>
                 <td>{{ $supplier->email }}</td>

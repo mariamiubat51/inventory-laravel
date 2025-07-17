@@ -6,12 +6,19 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionLogController;
 
 
 
 Route::resource('products', ProductController::class);
 
 Route::resource('suppliers', SupplierController::class);
+
+Route::resource('accounts', AccountController::class);
+
+Route::resource('transaction_logs', TransactionLogController::class)
+    ->only(['index', 'create', 'store']);
 
 
 

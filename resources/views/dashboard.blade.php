@@ -52,7 +52,8 @@
     <a href="#"><i class="fas fa-shopping-cart me-2"></i>Purchases</a>
     <a href="#"><i class="fas fa-cash-register me-2"></i>Sales</a>
     <a href="#"><i class="fas fa-chart-bar me-2"></i>Reports</a>
-    <a href="#"><i class="fas fa-solid fa-building-columns"></i>Accounts</a>
+    <a href="{{ url('/accounts') }}"><i class="fas fa-solid fa-building-columns"></i>Accounts</a>
+    <a href="{{ url('/transaction_logs') }}"><i class="fas fa-file-invoice-dollar me-2"></i>Transaction-Logs</a>
     <a href="{{ url('/users') }}"><i class="fas fa-user me-2"></i>Users</a>
     <a href="#"><i class="fas fa-cog me-2"></i>Settings</a>
   </div>
