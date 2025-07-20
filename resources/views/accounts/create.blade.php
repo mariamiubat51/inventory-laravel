@@ -7,7 +7,7 @@
         @csrf
         <div class="mb-3">
             <label>Account Code</label>
-            <input type="text" name="account_code" class="form-control" required>
+            <input type="text" name="account_code" value="{{ $nextAccountCode }}" class="form-control" readonly>
         </div>
         <div class="mb-3">
             <label>Account Name</label>
@@ -29,7 +29,7 @@
             <label>Note (optional)</label>
             <textarea name="note" class="form-control"></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
     </form>
 </div>
 @endsection

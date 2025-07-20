@@ -19,10 +19,12 @@
     <thead class="table-dark">
       <tr>
         <th>#ID</th>
+        <th>Code</th>
         <th>Image</th>
         <th>Name</th>
         <th>Description</th>
-        <th>Price (৳)</th>
+        <th>Buying Price (৳)</th>
+        <th>Selling Price (৳)</th>
         <th>Stock</th>
         <th>Actions</th>
       </tr>
@@ -31,6 +33,7 @@
       @forelse($products as $product)
       <tr>
         <td>{{ $product->id }}</td>
+        <td>{{ $product->product_code }}</td>
 
         {{-- Show product image --}}
         <td>
@@ -43,7 +46,8 @@
 
         <td>{{ $product->name }}</td>
         <td>{{ $product->description }}</td>
-        <td>{{ $product->price }}</td>
+        <td>{{ $product->buying_price }}</td>
+        <td>{{ $product->selling_price }}</td>
         <td>{{ $product->stock_quantity }}</td>
         <td>
           <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
@@ -58,7 +62,7 @@
       </tr>
       @empty
       <tr>
-        <td colspan="7" class="text-center">No products found.</td>
+        <td colspan="9" class="text-center">No products found.</td>
       </tr>
       @endforelse
     </tbody>

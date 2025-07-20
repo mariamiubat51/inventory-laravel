@@ -4,20 +4,34 @@ namespace App\Http\Controllers;
 
 use App\Models\Account;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller; 
 
 class AccountController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $accounts = Account::all();
         return view('accounts.index', compact('accounts'));
     }
 
-    public function create() {
-        return view('accounts.create');
+    public function create()
+    {
+        // Generate the next account code like acc-001, acc-002, ...
+        $lastAccount = Account::orderBy('id', 'desc')->first();
+
+        if ($lastAccount) {
+            $lastNumber = (int) str_replace('acc-', '', $lastAccount->account_code);
+            $nextNumber = $lastNumber + 1;
+        } else {
+            $nextNumber = 1;
+        }
+
+        $nextAccountCode = 'acc-' . str_pad($nextNumber, 3, '0', STR_PAD_LEFT);
+
+        return view('accounts.create', compact('nextAccountCode'));
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $request->validate([
             'account_code' => 'required|unique:accounts',
             'account_name' => 'required',
@@ -33,11 +47,13 @@ class AccountController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Account created successfully.');
     }
 
-    public function edit(Account $account) {
+    public function edit(Account $account)
+    {
         return view('accounts.edit', compact('account'));
     }
 
-    public function update(Request $request, Account $account) {
+    public function update(Request $request, Account $account)
+    {
         $request->validate([
             'account_code' => 'required|unique:accounts,account_code,' . $account->id,
             'account_name' => 'required',
@@ -57,7 +73,8 @@ class AccountController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Account updated successfully.');
     }
 
-    public function destroy(Account $account) {
+    public function destroy(Account $account)
+    {
         $account->delete();
         return redirect()->route('accounts.index')->with('success', 'Account deleted successfully.');
     }

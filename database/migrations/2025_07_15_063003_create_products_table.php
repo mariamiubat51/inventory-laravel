@@ -10,10 +10,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->string('product_code')->unique();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->decimal('price', 10, 2);
+            $table->decimal('buying_price', 15, 2);           // renamed to price
+            $table->decimal('selling_price', 10, 2);
             $table->integer('stock_quantity')->default(0);
+            $table->string('image')->nullable();        // added image column, nullable
             $table->timestamps();
         });
     }

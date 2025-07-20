@@ -8,6 +8,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransactionLogController;
+use App\Http\Controllers\PurchaseController;
+
 
 
 
@@ -19,6 +21,9 @@ Route::resource('accounts', AccountController::class);
 
 Route::resource('transaction_logs', TransactionLogController::class)
     ->only(['index', 'create', 'store']);
+
+Route::resource('purchases', PurchaseController::class);
+
 
 
 

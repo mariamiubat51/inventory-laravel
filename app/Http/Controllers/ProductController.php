@@ -22,12 +22,25 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required|numeric',
-            'stock_quantity' => 'required|integer',
+            'description' => 'nullable|string',
+            'buying_price' => 'required|numeric|min:0',            
+            'selling_price' => 'required|numeric|min:0',
+            'stock_quantity' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
+        // Generate unique product code
+        $productCode = 'PRD' . now()->format('Ymd') . rand(1000, 9999);
+
+        $data = $request->only([
+            'name',
+            'description',
+            'buying_price',                                    
+            'selling_price',
+            'stock_quantity',
+        ]);
+
+        $data['product_code'] = $productCode;
 
         // Image Upload
         if ($request->hasFile('image')) {
@@ -48,12 +61,20 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'price' => 'required|numeric',
-            'stock_quantity' => 'required|integer',
+            'description' => 'nullable|string',
+            'buying_price' => 'required|numeric|min:0',         
+            'selling_price' => 'required|numeric|min:0',
+            'stock_quantity' => 'required|integer|min:0',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        $data = $request->all();
+        $data = $request->only([
+            'name',
+            'description',
+            'buying_price',                                    
+            'selling_price',
+            'stock_quantity',
+        ]);
 
         // Image Upload
         if ($request->hasFile('image')) {

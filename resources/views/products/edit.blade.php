@@ -30,8 +30,13 @@
     </div>
 
     <div class="mb-3">
-      <label class="form-label">Price</label>
-      <input type="number" step="0.01" name="price" value="{{ $product->price }}" class="form-control" required>
+      <label class="form-label">Buying Price (৳)</label>
+      <input type="number" step="0.01" name="buying_price" value="{{ $product->buying_price }}" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Selling Price (৳)</label>
+      <input type="number" step="0.01" name="selling_price" value="{{ $product->selling_price }}" class="form-control" required>
     </div>
 
     <div class="mb-3">
